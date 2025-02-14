@@ -1,3 +1,5 @@
+@import '../../../styles/variables.scss';
+
 .innerSidebar {
     position: fixed;
     top: 60px;
@@ -7,10 +9,14 @@
     background-color: #F2F9FF;
     padding: 15px;
     overflow-y: auto;
+
     border-right: 2px solid #E0F4FF;
   
     h2 {
       margin-bottom: 15px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid $primary-color ;
+
     }
   
     ul {
@@ -21,6 +27,22 @@
     li {
       margin: 10px 0;
       cursor: pointer;
+    }
+
+    .tabContainer{
+
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .title{
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: large;
+      cursor: pointer;
+      padding-left: 10px;
     }
   }
   

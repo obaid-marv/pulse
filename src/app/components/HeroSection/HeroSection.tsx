@@ -6,19 +6,21 @@ import { Images } from "@/constants/images";
 import { useState } from "react";
 import LoginPopup from "../AuthPopups/LoginPopup";
 import SignupPopup from "../AuthPopups/SignupPopup";
+import ConfirmationPopup from "../AuthPopups/ConfirmationPopup";
 
 export default function HeroSection() {
     const [signupPopup, setSignupPopup] = useState(false);
     const [loginPopup, setLoginPopup] = useState(false);
+    const [emailConfirmation, setEmailConfirmation] = useState(false);
 
     const openLogin = () => {
         setSignupPopup(false);
-        setLoginPopup(true)
-    }
+        setLoginPopup(true);
+    } 
 
     const openSignup = () => {
         setSignupPopup(true);
-        setLoginPopup(false)
+        setLoginPopup(false);
     }
 
     return (
@@ -59,11 +61,16 @@ export default function HeroSection() {
             {signupPopup && <SignupPopup
              onClose={() => setSignupPopup(false)}
              onOpenLogin={openLogin}
+             showSuccess={() => {setEmailConfirmation(true); setSignupPopup(false)}}
              />
             }
             {loginPopup && <LoginPopup
              onClose={() => setLoginPopup(false)}
              onOpenSignup={openSignup}
+             />
+            }
+            {emailConfirmation && <ConfirmationPopup
+             onClose={() => setEmailConfirmation(false)}
              />
             }
         </>

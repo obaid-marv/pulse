@@ -1,0 +1,81 @@
+@import '../../../styles/variables.scss';
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .container {
+    background: $secondary-color;
+    padding: 25px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column  ;
+    font-family: var(--font-roboto);
+  }
+  
+  .closeButton {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    background: lightgray;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .mailImage{
+    padding: 25px;
+    margin-top: 50px;
+    height: 150px;
+    width: 150px;
+  }
+
+  .successText{
+    font-weight: 300;
+    font-size: x-large;
+    font-family: var(--font-roboto);
+    color: $primary-color;
+    margin: 0;
+    padding: 0;
+    line-height: 50px;
+    text-align: center  ;
+  }
+
+
+
+  .newAccount {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+    border: 2px solid $primary-color;
+    padding: 20px;
+    width: 250px;
+    border-radius: 10px;
+    &:hover {
+      background-color: scale-color($secondary-color, $lightness: -10%);
+
+    }
+  }
+  
+ 
+  

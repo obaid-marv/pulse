@@ -1,0 +1,11 @@
+.layout {
+    display: flex;
+    font-family: var(--font-roboto);
+  }
+
+  .mainContent {
+    margin-left: 400px; 
+    margin-top: 60px;
+    padding: 20px;
+    flex: 1;
+  }

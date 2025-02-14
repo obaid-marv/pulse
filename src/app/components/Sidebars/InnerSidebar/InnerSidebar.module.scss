@@ -1,0 +1,26 @@
+.innerSidebar {
+    position: fixed;
+    top: 60px;
+    left: 90px;
+    width: 280px;
+    height: calc(100vh - 60px);
+    background-color: #F2F9FF;
+    padding: 15px;
+    overflow-y: auto;
+    border-right: 2px solid #E0F4FF;
+  
+    h2 {
+      margin-bottom: 15px;
+    }
+  
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+  
+    li {
+      margin: 10px 0;
+      cursor: pointer;
+    }
+  }
+  

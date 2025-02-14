@@ -5,10 +5,11 @@ import CustomInput from "../../CustomInput/CustomInput";
 
 interface SignupPopupProps {
   onClose: () => void;
-  onOpenLogin: () => void
+  onOpenLogin: () => void;
+  showSuccess: () => void;
 }
 
-export default function SignupPopup({onClose, onOpenLogin} : SignupPopupProps) {
+export default function SignupPopup({onClose, onOpenLogin, showSuccess} : SignupPopupProps) {
   const [formData, setFormData] = useState({
     email: "",
     username: "",
@@ -64,7 +65,9 @@ export default function SignupPopup({onClose, onOpenLogin} : SignupPopupProps) {
           error={errors.confirmPassword}
         />
 
-        <button className={styles.loginButton}>Sign up</button>
+        <button
+          onClick={showSuccess}
+          className={styles.loginButton}>Sign up</button>
 
         <div className={styles.separator}>
           <div className={styles.line}></div>

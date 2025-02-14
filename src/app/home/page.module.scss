@@ -1,0 +1,32 @@
+@import '../styles/variables.scss';
+
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center ;
+    width: 100%;
+    height: calc(100vh - 100px);
+    
+
+    .splashImage{
+        height: auto;
+        object-fit: contain;
+        width: 400px;
+    }
+
+    .description{
+        color: $primary-color;
+        text-align: center;
+        margin: 0;
+    }
+
+    .splashText{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        justify-content: center;
+    }
+ }

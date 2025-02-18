@@ -23,8 +23,14 @@ export const login = async (data: {email: string; password: string}): Promise<Lo
 
 
 export const myDetails = async (): Promise<MyDetailsResponse> => {
-    const response = await axiosInstance.get(`${baseUrl}/api/v1/user/me`)
-    return response.data
+    try{
+        const response = await axiosInstance.get(`${baseUrl}/api/v1/user/me`)
+        return response.data
+    }
+    catch(err){
+        Cookies.remove("token");
+        return { success: false, user: {username: "", name: "", id: 0, email: "", isVerified: false} }
+    }
   };
 
 

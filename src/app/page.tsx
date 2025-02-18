@@ -3,9 +3,9 @@ import useMyDetails from "@/hooks/Auth/useGetMyDetails";
 import HeroSection from "./components/HeroSection";
 import LandingPageNavbar from "./components/LandingPageNavbar";
 import styles from "./page.module.scss";
-import getToken from "@/api/utils/getToken";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import getToken from "@/utils/getToken";
 
 export default function Home() {
 

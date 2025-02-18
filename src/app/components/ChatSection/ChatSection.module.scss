@@ -1,6 +1,10 @@
 .chatSection {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 4px;
+    height: 350px;
+    overflow-y: auto;
+    width: 100%;
+    margin-top: 330px;
   }
   

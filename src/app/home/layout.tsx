@@ -6,6 +6,7 @@ import OuterSidebar from "../components/Sidebars/OuterSidebar";
 import styles from "./layout.module.scss";
 import { roboto } from "../fonts";
 import useMyDetails from "@/hooks/Auth/useGetMyDetails";
+import { SocketProvider } from "@/context/socketContext";
 
 interface LayoutProps {
   children: ReactNode;
@@ -22,10 +23,12 @@ export default function Layout({ children }: LayoutProps) {
   }, [data, refetch])
   return (
     <div className={`${styles.layout} ${roboto.variable}`}>
+
       <Navbar />
       <OuterSidebar />
       <InnerSidebar />
       <main className={styles.mainContent}>{children}</main>
+
     </div>
   );
 }

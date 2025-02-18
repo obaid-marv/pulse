@@ -13,6 +13,8 @@ import dotsIcon from '../../public/images/icons/dots.svg';
 import plusIcon from '../../public/images/icons/plusIcon.svg';
 import chatBlue from '../../public/images/icons/charBlue.svg';
 import usersIcon from '../../public/images/icons/users.svg'; 
+import defaultAvatar from '../../public/images/default-avatar.webp'; 
+
 
 
 
@@ -33,5 +35,6 @@ export const Images = {
     "plus": plusIcon,
     "profileImg": profileImg,
     "chatBlue": chatBlue,
-    "users": usersIcon
+    "users": usersIcon,
+    "default-avatar": defaultAvatar
 }

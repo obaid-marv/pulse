@@ -15,7 +15,8 @@ export interface User{
     username: string,
     email: string,
     name: string,
-    isVerified: boolean
+    isVerified: boolean,
+    imgUrl?:string
 }
 
 
@@ -33,7 +34,7 @@ export interface SignupResponse{
 
 export interface MyDetailsResponse{
     success: boolean,
-    user: User
+    user: User 
 }
 
 

@@ -1,0 +1,29 @@
+.message {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .messageAvatar {
+    img {
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+  
+  .messageContent {
+    flex: 1;
+  }
+  
+  .messageSender {
+    display: block;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 4px;
+  }
+  
+  .messageText {
+    color: #374151;
+    margin: 0;
+    line-height: 1.5;
+  }
+  

@@ -1,0 +1,137 @@
+.container {
+    max-width: 800px;
+    padding: 20px;
+  }
+  
+  .profileSection {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 20px;
+  }
+  
+  .profileInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  
+  .imageWrapper {
+    position: relative;
+  }
+  
+  .profileImage {
+    border-radius: 5px;
+    object-fit: cover;
+  }
+  
+  .onlineStatus {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 12px;
+    height: 12px;
+    background-color: #22c55e;
+    border-radius: 50%;
+    border: 2px solid white;
+  }
+  
+  .profileText {
+    .name {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #111827;
+      margin: 0 0 8px 0;
+    }
+  
+    .description {
+      color: #6b7280;
+      font-size: 0.875rem;
+      margin: 0;
+  
+      a {
+        color: #2563eb;
+        text-decoration: none;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  
+  .viewProfileButton {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    color: #374151;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  
+    &:hover {
+      background-color: #f9fafb;
+    }
+  }
+  
+  .chatSection {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .message {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .messageAvatar {
+    img {
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+  
+  .messageContent {
+    flex: 1;
+  }
+  
+  .messageSender {
+    display: block;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 4px;
+  }
+  
+  .messageText {
+    color: #374151;
+    margin: 0;
+    line-height: 1.5;
+  }
+  
+  @media (max-width: 640px) {
+    .profileSection {
+      flex-direction: column;
+      gap: 16px;
+    }
+  
+    .viewProfileButton {
+      align-self: flex-start;
+    }
+  
+    .profileInfo {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .profileText {
+      text-align: center;
+    }
+  }
+  
+  

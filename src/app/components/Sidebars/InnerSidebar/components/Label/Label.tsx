@@ -1,17 +1,27 @@
 import Image from 'next/image';
 import styles from './Label.module.scss'
+import { useRouter } from 'next/navigation';
 
 
 interface LabelProps {
+    id?: number;
     type: string;
     name: string;
     icon?: string;
+    isActive?: boolean;
 }
 
-export default function Label ({type, name, icon}: LabelProps) {
-
+export default function Label ({id ,type, name, icon, isActive}: LabelProps) {
+    const router = useRouter()
+    const handleNavigate = () => {
+        if(type=="user")
+          router.push(`/home/user/${id}`);
+    }
     return(
-        <div className={styles.container}>
+        <div
+         onClick={handleNavigate}
+         className={`${styles.container}  ${isActive && styles.active}`}
+        >
             {type=="group" &&
                 <p className={styles.hash}>#</p>
             }

@@ -44,5 +44,14 @@
       cursor: pointer;
       padding-left: 10px;
     }
+
+
+    .arrow {
+      transition: transform 0.3s ease;
+    }
+    
+    .open {
+      transform: rotate(-180deg);
+    }
   }
   

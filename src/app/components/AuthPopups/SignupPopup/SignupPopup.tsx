@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./SignupPopup.module.scss";
-import { righteous, roboto} from '../../../fonts'
+import { righteous, roboto } from "../../../fonts";
 import CustomInput from "../../CustomInput/CustomInput";
+import useSignup from "@/hooks/Auth/useSignup";
+import { error, validationError } from "@/types/errors";
 
 interface SignupPopupProps {
   onClose: () => void;
@@ -9,41 +11,90 @@ interface SignupPopupProps {
   showSuccess: () => void;
 }
 
-export default function SignupPopup({onClose, onOpenLogin, showSuccess} : SignupPopupProps) {
-  const [formData, setFormData] = useState({
+interface FormData {
+  email: string;
+  username: string; 
+  password: string;
+  name: string;
+}
+
+export default function SignupPopup({
+  onClose,
+  onOpenLogin,
+  showSuccess,
+}: SignupPopupProps) {
+  const { signup, isPending, isError, error} = useSignup();
+
+  const [formData, setFormData] = useState<FormData>({
     email: "",
     username: "",
     password: "",
-    confirmPassword: "",
+    name: "",
   });
 
-  const [errors, setErrors] = useState({
+  const [errors, setErrors] = useState<FormData>({
     email: "",
     username: "",
     password: "",
-    confirmPassword: "",
+    name: "",
   });
 
-  const handleChange = (field: string, value: string) => {
+  const handleChange = (field: keyof FormData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
-    setErrors((prev) => ({ ...prev, [field]: "" })); // Clear error when typing
+    setErrors((prev) => ({ ...prev, [field]: "" })); 
+  };
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+  
+    try {
+      await signup(formData);
+      showSuccess();
+    } catch (err: validationError | any) {
+      if (Array.isArray(err.response.data.errors)) {
+        const defaultErrors: FormData = {
+          email: "",
+          username: "",
+          password: "",
+          name: "",
+        };
+        const newErrors: Partial<FormData> = {};
+        err.response.data.errors.forEach((error: error) => {
+          if (error.path.length > 0) {
+            const fieldName = error.path[0] as keyof FormData;
+            newErrors[fieldName] = error.message;
+          }
+        });
+  
+        setErrors({ ...defaultErrors, ...newErrors }); 
+      }
+    }
   };
 
   return (
     <div className={styles.popup}>
       <div className={`${styles.container} ${roboto.variable}`}>
-        <button
-         onClick={onClose}
-         className={styles.closeButton}
-        
-        >✕</button>
+        <button onClick={onClose} className={styles.closeButton}>
+          ✕
+        </button>
         <h2 className={`${styles.title} ${righteous.variable}`}>Signup</h2>
 
         <CustomInput
           placeholder="Enter your email"
-          helperText="This is how other people see you. You can use special characters & emojis."
           isError={!!errors.email}
           error={errors.email}
+          value={formData.email}
+          onChange={(value) => handleChange("email", value)}
+          type="email"
+        />
+
+        <CustomInput
+          placeholder="Name"
+          helperText="This is how other people see you. You can use special characters & emojis."
+          isError={!!errors.name}
+          error={errors.name}
+          value={formData.name}
+          onChange={(value) => handleChange("name", value)} 
         />
 
         <CustomInput
@@ -51,35 +102,42 @@ export default function SignupPopup({onClose, onOpenLogin, showSuccess} : Signup
           helperText="Please only use numbers, letters, underscores, or periods."
           isError={!!errors.username}
           error={errors.username}
+          value={formData.username}
+          onChange={(value) => handleChange("username", value)}
         />
 
         <CustomInput
           placeholder="Password"
           isError={!!errors.password}
           error={errors.password}
+          type="password"
+          value={formData.password}
+          onChange={(value) => handleChange("password", value)}
         />
 
-        <CustomInput
-          placeholder="Confirm Password"
-          isError={!!errors.confirmPassword}
-          error={errors.confirmPassword}
-        />
+        {isPending && <p>Signing up...</p>}
+
+        {isError && error && <p className={styles.errorMessage}>{error.message}</p>}
 
         <button
-          onClick={showSuccess}
-          className={styles.loginButton}>Sign up</button>
+          onClick={(e) => handleSubmit(e)}
+          className={styles.loginButton}
+          disabled={isPending} 
+        >
+          Sign up
+        </button>
 
         <div className={styles.separator}>
           <div className={styles.line}></div>
           <p>or</p>
           <div className={styles.line}></div>
-
         </div>
 
         <p className={styles.alreadyAccount}>
-          Already have an account? <span
-           onClick={onOpenLogin}
-           className={styles.loginLink}>Login</span>
+          Already have an account?{" "}
+          <span onClick={onOpenLogin} className={styles.loginLink}>
+            Login
+          </span>
         </p>
       </div>
     </div>

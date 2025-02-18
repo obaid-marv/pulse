@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Layout from "./layout";
 import styles from "./page.module.scss";
 import { Images } from "@/constants/images";
 

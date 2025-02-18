@@ -25,10 +25,17 @@
         transform: translateX(10px);
     }
 
+    
+
     .icon{
         border-radius: 100%;
         width: 30px;
         height: 30px;
     }
 
+}
+
+.active{
+    transform: translateX(10px);
+    background-color: #C7EAFF;
 }

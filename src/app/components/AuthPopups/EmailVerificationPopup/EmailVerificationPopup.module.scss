@@ -1,0 +1,113 @@
+@import '../../../styles/variables.scss';
+
+
+.verifyPopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.container{
+
+  background-color: white;
+  width: 350px;
+  padding: 20px ;
+  border-radius: 10px;
+  font-family: var(--font-roboto);
+}
+
+.popupHeader {
+  margin-bottom: 20px;
+}
+
+.popupTitle {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.popupDescription {
+  font-size: 14px;
+}
+
+.popupDivider {
+  border-top: 1px solid #ddd;
+  margin: 20px 0;
+}
+
+
+.infoText {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.infoEmail {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.verifyForm .otpInputs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.otpInput {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 20px;
+  background-color: white;
+  color: black;
+  border: 2px solid #4A4A4A;
+  border-radius: 50%;
+  outline: none;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 12px;
+  background-color: $primary-color;
+  color: white;
+  border-radius: 50px;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.submitBtn:hover {
+  background-color: #045bb5;
+}
+
+.resendEmail, .backToLogin {
+  text-align: center;
+  margin-top: 10px;
+}
+
+
+.backToLogin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.backToLogin:hover {
+  transform: scale(1.05);
+}
+
+.backText {
+  margin-left: 8px;
+  font-weight: 500;
+}
+
+.errorMessage{
+  color: red;
+}
+

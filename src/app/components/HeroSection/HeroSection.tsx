@@ -7,11 +7,13 @@ import { useState } from "react";
 import LoginPopup from "../AuthPopups/LoginPopup";
 import SignupPopup from "../AuthPopups/SignupPopup";
 import ConfirmationPopup from "../AuthPopups/ConfirmationPopup";
+import EmailVerificationPopup from "../AuthPopups/EmailVerificationPopup";
 
 export default function HeroSection() {
     const [signupPopup, setSignupPopup] = useState(false);
     const [loginPopup, setLoginPopup] = useState(false);
     const [emailConfirmation, setEmailConfirmation] = useState(false);
+    const [emailVerificationPopup, setEmailVerificationPopup] = useState(false);
 
     const openLogin = () => {
         setSignupPopup(false);
@@ -21,6 +23,15 @@ export default function HeroSection() {
     const openSignup = () => {
         setSignupPopup(true);
         setLoginPopup(false);
+    }
+
+    const showEmailPopup = () => {
+        setSignupPopup (false)
+        setEmailConfirmation(true)
+        setTimeout(()=>{
+            setEmailConfirmation(false)
+            setEmailVerificationPopup(true)
+        }, 2000)
     }
 
     return (
@@ -61,7 +72,7 @@ export default function HeroSection() {
             {signupPopup && <SignupPopup
              onClose={() => setSignupPopup(false)}
              onOpenLogin={openLogin}
-             showSuccess={() => {setEmailConfirmation(true); setSignupPopup(false)}}
+             showSuccess={showEmailPopup}
              />
             }
             {loginPopup && <LoginPopup
@@ -73,6 +84,11 @@ export default function HeroSection() {
              onClose={() => setEmailConfirmation(false)}
              />
             }
+
+            {emailVerificationPopup && 
+              <EmailVerificationPopup/>
+            }
+
         </>
     );
 }

@@ -9,6 +9,6 @@ export const righteous = Righteous({
 
 export const roboto = Roboto({
   subsets: ["latin"],
-  weight: ["400", "700"], 
+  weight: ["400", "700"],
   variable: "--font-roboto",
 });

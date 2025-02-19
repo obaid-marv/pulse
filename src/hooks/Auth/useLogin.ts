@@ -4,7 +4,6 @@ import { ApiError, LoginResponse } from "@/types/auth/interfaces";
 import { login } from "@/api/auth/authApi";
 import Cookies from "js-cookie";
 
-
 interface UseLoginResponse {
   login: (data: { email: string; password: string }) => Promise<void>;
   isPending: boolean;
@@ -28,7 +27,8 @@ const useLogin = (): UseLoginResponse => {
   >({
     mutationFn: login,
     onSuccess: (data) => {
-      Cookies.set("token", data.token)
+      Cookies.set("token", data.token);
+      Cookies.set("isVerified", data.isVerified.toString());
       queryClient.setQueryData(["loginData"], data);
     },
   });

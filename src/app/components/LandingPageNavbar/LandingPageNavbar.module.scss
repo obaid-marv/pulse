@@ -12,13 +12,12 @@
 .logo {
   flex: 1;
   color: #333;
-  
 }
-.image{
-    width: 200px;
-    height: 80px;
+.image {
+  width: 200px;
+  height: 80px;
 
-    object-fit: contain;
+  object-fit: contain;
 }
 
 .navLinks {
@@ -30,15 +29,14 @@
     a {
       text-decoration: none;
       color: #333;
-      font-size:larger;
+      font-size: larger;
       transition: color 0.3s;
       font-weight: 700;
       color: $primary-color;
 
       &:hover {
-        text-decoration: underline
+        text-decoration: underline;
       }
-      
     }
   }
 }
@@ -52,19 +50,17 @@
   font-size: large;
   background-color: $primary-color;
   cursor: pointer;
-  
-  &:hover {  
+
+  &:hover {
     background-color: scale-color($primary-color, $lightness: -10%);
     cursor: pointer;
   }
 }
 
-.navigationWrapper{
-    flex: 2;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 100px;
+.navigationWrapper {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 100px;
 }
-
-

@@ -3,17 +3,19 @@ import { PreviousMessagesResponse } from "@/types/message/interfaces";
 import { useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
-
 interface UsePreviousMessagesResponse {
   data?: PreviousMessagesResponse;
   isPending: boolean;
   isError: boolean;
   error?: string;
-  refetch: () => void; 
+  refetch: () => void;
 }
 
 const usePreviousMessages = (senderId: number, receiverId: number): UsePreviousMessagesResponse => {
-  const { data, isLoading, isError, error, refetch } = useQuery<PreviousMessagesResponse, AxiosError<{ message?: string }>>({
+  const { data, isLoading, isError, error, refetch } = useQuery<
+    PreviousMessagesResponse,
+    AxiosError<{ message?: string }>
+  >({
     queryKey: ["previousMessages", senderId, receiverId],
     queryFn: () => getPreviousMessages({ senderId, receiverId }),
     enabled: !!senderId && !!receiverId,

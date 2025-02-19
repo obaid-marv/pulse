@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 .wrapper {
   position: fixed;
   bottom: 0;
@@ -26,7 +28,8 @@
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
 }
 
-.topToolbar, .bottomToolbar {
+.topToolbar,
+.bottomToolbar {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -116,7 +119,7 @@
   flex-shrink: 0;
 
   &.active {
-    color: #3b82f6;
+    color: $primary-color;
 
     &:hover {
       background-color: #dbeafe;
@@ -135,6 +138,3 @@
   outline: 2px solid #3b82f6;
   outline-offset: 2px;
 }
-
-
-

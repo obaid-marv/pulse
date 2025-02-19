@@ -13,17 +13,13 @@ interface SignupPopupProps {
 
 interface FormData {
   email: string;
-  username: string; 
+  username: string;
   password: string;
   name: string;
 }
 
-export default function SignupPopup({
-  onClose,
-  onOpenLogin,
-  showSuccess,
-}: SignupPopupProps) {
-  const { signup, isPending, isError, error} = useSignup();
+export default function SignupPopup({ onClose, onOpenLogin, showSuccess }: SignupPopupProps) {
+  const { signup, isPending, isError, error } = useSignup();
 
   const [formData, setFormData] = useState<FormData>({
     email: "",
@@ -41,12 +37,12 @@ export default function SignupPopup({
 
   const handleChange = (field: keyof FormData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
-    setErrors((prev) => ({ ...prev, [field]: "" })); 
+    setErrors((prev) => ({ ...prev, [field]: "" }));
   };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-  
+
     try {
       await signup(formData);
       showSuccess();
@@ -65,8 +61,8 @@ export default function SignupPopup({
             newErrors[fieldName] = error.message;
           }
         });
-  
-        setErrors({ ...defaultErrors, ...newErrors }); 
+
+        setErrors({ ...defaultErrors, ...newErrors });
       }
     }
   };
@@ -94,7 +90,7 @@ export default function SignupPopup({
           isError={!!errors.name}
           error={errors.name}
           value={formData.name}
-          onChange={(value) => handleChange("name", value)} 
+          onChange={(value) => handleChange("name", value)}
         />
 
         <CustomInput
@@ -122,7 +118,7 @@ export default function SignupPopup({
         <button
           onClick={(e) => handleSubmit(e)}
           className={styles.loginButton}
-          disabled={isPending} 
+          disabled={isPending}
         >
           Sign up
         </button>

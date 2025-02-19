@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { ReactNode, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import InnerSidebar from "../components/Sidebars/InnerSidebar";
@@ -13,22 +13,19 @@ interface LayoutProps {
 }
 
 export default function Layout({ children }: LayoutProps) {
-
   const { data, isPending, refetch } = useMyDetails();
 
-  useEffect(()=>{
-      if(!isPending&& !data?.user){
-        refetch()
-      }
-  }, [data, refetch])
+  useEffect(() => {
+    if (!isPending && !data?.user) {
+      refetch();
+    }
+  }, [data, refetch]);
   return (
     <div className={`${styles.layout} ${roboto.variable}`}>
-
       <Navbar />
       <OuterSidebar />
       <InnerSidebar />
       <main className={styles.mainContent}>{children}</main>
-
     </div>
   );
 }

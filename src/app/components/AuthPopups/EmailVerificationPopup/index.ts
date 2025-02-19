@@ -1,1 +1,1 @@
-export { default } from './EmailVerificationPopup'
+export { default } from "./EmailVerificationPopup";

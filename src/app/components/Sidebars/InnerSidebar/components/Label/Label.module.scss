@@ -1,41 +1,38 @@
-@import '../../../../../styles/variables.scss';
+@import "../../../../../styles/variables.scss";
 
 .container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: $primary-color;
-    padding: 5px;
-    margin-left: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: transform 0.3s ease-in-out; 
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: $primary-color;
+  padding: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: transform 0.3s ease-in-out;
 
-    .hash {
-        margin: 0;
-        font-size: large;
-    }
+  .hash {
+    margin: 0;
+    font-size: large;
+  }
 
-    .name {
-        margin: 0;
-        font-size: large;
-    }
+  .name {
+    margin: 0;
+    font-size: large;
+  }
 
-    &:hover {
-        transform: translateX(10px);
-    }
+  &:hover {
+    transform: translateX(10px);
+  }
 
-    
-
-    .icon{
-        border-radius: 100%;
-        width: 30px;
-        height: 30px;
-    }
-
+  .icon {
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+  }
 }
 
-.active{
-    transform: translateX(10px);
-    background-color: #C7EAFF;
+.active {
+  transform: translateX(10px);
+  background-color: #c7eaff;
 }

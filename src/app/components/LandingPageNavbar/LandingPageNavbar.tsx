@@ -1,5 +1,5 @@
 import styles from "./LandingPageNavbar.module.scss";
-import { roboto } from '../../fonts';
+import { roboto } from "../../fonts";
 import Image from "next/image";
 import { Images } from "@/constants/images";
 
@@ -17,15 +17,21 @@ export default function LandingPageNavbar() {
       </div>
       <div className={styles.navigationWrapper}>
         <ul className={styles.navLinks}>
-            <li><a href="#">Privacy</a></li>
-            <li><a href="#">Help Center</a></li>
-            <li><a href="#">Pulse Web</a></li>
-            <li><a href="#">Download</a></li>
+          <li>
+            <a href="#">Privacy</a>
+          </li>
+          <li>
+            <a href="#">Help Center</a>
+          </li>
+          <li>
+            <a href="#">Pulse Web</a>
+          </li>
+          <li>
+            <a href="#">Download</a>
+          </li>
         </ul>
         <div>
-            <button className={styles.button}>
-                Try Pulse
-            </button>
+          <button className={styles.button}>Try Pulse</button>
         </div>
       </div>
     </nav>

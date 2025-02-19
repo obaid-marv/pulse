@@ -7,11 +7,9 @@ const queryClient = new QueryClient(); // Initialize the QueryClient here
 
 export default function Providers({ children }: { children: ReactNode }) {
   return (
-
-      <QueryClientProvider client={queryClient}>
-        {children}
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-
+    <QueryClientProvider client={queryClient}>
+      {children}
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+    </QueryClientProvider>
   );
 }

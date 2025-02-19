@@ -1,92 +1,88 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 
-  .hero {
-    margin-top: 50px;
-    display: flex;
-    align-items: center;
-    padding: 50px;
-    color: $primary-color;
-    max-width: 1600px;
-    margin: 0 auto; 
-  }
-  
-  .hero__text {
-    color: $primary-color;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    padding: 20px;
-    align-items: start;
-    gap: 30px;
-    justify-content: center; 
-  }
-  
-  .hero__title {
-    font-size: 60px;
-    font-family: var(--font-righteous);
-    font-weight: 500;
-    margin: 0;
-  }
-  
-  .hero__description {
-    font-weight: 300;
-    font-size: xx-large;
-    font-family: var(--font-roboto);
-    color: $primary-color;
-    margin: 0;
-    padding: 0;
-    line-height: 50px;
-  }
-  
-  .hero__button__wrapper {
-    font-family: var(--font-roboto);
-    display: flex;
-    align-items: center;
-    gap: 40px;
-  }
-  
-  .hero__button__signup {
-    padding: 20px 40px;
-    cursor: pointer;
-    border-radius: 10px;
-    width: 250px;
-    background-color: $primary-color;
-    color: white;
-    font-weight: 600;
-    font-size: larger;
-    &:hover {
-      background-color: scale-color($primary-color, $lightness: -10%);
+.hero {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  padding: 50px;
+  color: $primary-color;
+  max-width: 1600px;
+  margin: 0 auto;
+}
 
-    }
-  }
+.hero__text {
+  color: $primary-color;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 20px;
+  align-items: start;
+  gap: 30px;
+  justify-content: center;
+}
 
-  .hero__button__login{
-    padding: 20px 40px;
-    cursor: pointer;
-    border-radius: 10px;
-    width: 250px;
-    background-color: $secondary-color;
-    color: $primary-color;
-    font-weight: 600;
-    font-size: larger;
-    &:hover {
-      background-color: scale-color($secondary-color, $lightness: -10%);
-    }
-  }
-  
-  .hero__illustration {
-    flex: 1;
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-    height: 500px;
-  }
+.hero__title {
+  font-size: 60px;
+  font-family: var(--font-righteous);
+  font-weight: 500;
+  margin: 0;
+}
 
-  .hero__image{
-    object-fit: contain;
-    height: 500px;
-    width: 100%;
+.hero__description {
+  font-weight: 300;
+  font-size: xx-large;
+  font-family: var(--font-roboto);
+  color: $primary-color;
+  margin: 0;
+  padding: 0;
+  line-height: 50px;
+}
 
+.hero__button__wrapper {
+  font-family: var(--font-roboto);
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.hero__button__signup {
+  padding: 20px 40px;
+  cursor: pointer;
+  border-radius: 10px;
+  width: 250px;
+  background-color: $primary-color;
+  color: white;
+  font-weight: 600;
+  font-size: larger;
+  &:hover {
+    background-color: scale-color($primary-color, $lightness: -10%);
   }
-  
-  
+}
+
+.hero__button__login {
+  padding: 20px 40px;
+  cursor: pointer;
+  border-radius: 10px;
+  width: 250px;
+  background-color: $secondary-color;
+  color: $primary-color;
+  font-weight: 600;
+  font-size: larger;
+  &:hover {
+    background-color: scale-color($secondary-color, $lightness: -10%);
+  }
+}
+
+.hero__illustration {
+  flex: 1;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  height: 500px;
+}
+
+.hero__image {
+  object-fit: contain;
+  height: 500px;
+  width: 100%;
+}

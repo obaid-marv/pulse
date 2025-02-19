@@ -10,10 +10,9 @@ export default function Home() {
           src={Images.splash}
           alt="splash svg"
           width={500}
-          height={500}      
+          height={500}
           className={styles.splashImage}
         />
-
       </div>
       <div className={styles.splashText}>
         <Image
@@ -25,7 +24,6 @@ export default function Home() {
         />
         <p className={styles.description}>Connect, Communicate, Create</p>
         <p className={styles.description}>Your journey with pulse begins here!</p>
-
       </div>
     </div>
   );

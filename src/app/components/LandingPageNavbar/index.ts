@@ -1,1 +1,1 @@
-export { default } from "./LandingPageNavbar"
+export { default } from "./LandingPageNavbar";

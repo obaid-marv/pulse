@@ -1,8 +1,8 @@
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 const getToken = () => {
-    const token = Cookies.get("token");
-    return token;
-}
+  const token = Cookies.get("token");
+  return token;
+};
 
 export default getToken;

@@ -1,0 +1,94 @@
+@import "../../styles/variables.scss";
+
+.profilePanel {
+  position: fixed;
+  top: 60px;
+  right: -440px; // Hidden by default
+  width: 400px;
+  height: calc(100vh - 60px);
+  background: white;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  transition: right 0.3s ease-in-out;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.profilePanel.open {
+  right: 0; // Slide in when open
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.closeButton {
+  background: $secondary-color;
+  border: none;
+  font-size: 20px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.namingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: default;
+
+  .editButton {
+    background-color: #bce1ff;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}
+.content {
+  padding-top: 32px;
+  padding: 16px;
+
+  .name {
+    font-size: 30px;
+    margin: 5px;
+  }
+  .username {
+    color: $blue2;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 5px;
+  }
+  .email {
+    margin: 5px;
+    color: $blue2;
+  }
+  .status {
+    height: 220px;
+    border-bottom: 2px solid $secondary-color;
+    overflow-y: auto;
+  }
+}
+
+.imageWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.avatar {
+  border-radius: 5px;
+  border: 2px solid lightblue;
+  margin-bottom: 16px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  color: $blue2;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #555;
+}

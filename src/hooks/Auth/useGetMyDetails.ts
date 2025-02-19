@@ -12,10 +12,13 @@ interface UseMyDetailsResponse {
 }
 
 const useMyDetails = (): UseMyDetailsResponse => {
-  const { data, isLoading, isError, error, refetch } = useQuery<MyDetailsResponse, AxiosError<{
-    message?: string;
-  }>>({
-    queryKey: ["myDetails"], 
+  const { data, isLoading, isError, error, refetch } = useQuery<
+    MyDetailsResponse,
+    AxiosError<{
+      message?: string;
+    }>
+  >({
+    queryKey: ["myDetails"],
     queryFn: myDetails,
     retry: false,
   });

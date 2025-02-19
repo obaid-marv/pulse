@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useEffect, useState } from "react";
 import { Images } from "@/constants/images";
 import Tab from "./components/Tab";
@@ -13,15 +13,14 @@ export default function InnerSidebar() {
   const [isGroupsOpen, setIsGroupsOpen] = useState(false);
   const [isUsersOpen, setIsUsersOpen] = useState(false);
 
-  const { data: usersData, isPending, refetch} = useAllUsers();
+  const { data: usersData, isPending, refetch } = useAllUsers();
   const { data: myData } = useMyDetails();
 
-  useEffect(()=>{
-    if(!usersData&& !isPending)
-      refetch();
-  },[usersData, refetch])
+  useEffect(() => {
+    if (!usersData && !isPending) refetch();
+  }, [usersData, refetch]);
 
-  const filteredUsers = usersData?.users.filter((user)=> user.id!=myData?.user.id);
+  const filteredUsers = usersData?.users.filter((user) => user.id != myData?.user.id);
 
   return (
     <aside className={styles.innerSidebar}>
@@ -49,7 +48,7 @@ export default function InnerSidebar() {
             <IoIosArrowDown />
           </span>
         </p>
-        {isUsersOpen && <UsersDropdown users={filteredUsers || []}/>}
+        {isUsersOpen && <UsersDropdown users={filteredUsers || []} />}
       </div>
     </aside>
   );

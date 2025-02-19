@@ -1,20 +1,19 @@
 "use client";
 
-import { roboto } from '@/app/fonts';
-import styles from './EmailVerificationPopup.module.scss';
+import { roboto } from "@/app/fonts";
+import styles from "./EmailVerificationPopup.module.scss";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import useSignup, { useSignupData } from '@/hooks/Auth/useSignup';
-import useVerifyEmail from '@/hooks/Auth/useVerifyEmail';
+import useSignup, { useSignupData } from "@/hooks/Auth/useSignup";
+import useVerifyEmail from "@/hooks/Auth/useVerifyEmail";
 
 const EmailVerificationPopup = () => {
   const router = useRouter();
   const [otp, setOtp] = useState<string[]>(["", "", "", "", "", ""]);
 
   const { data } = useSignupData();
-  const { verify, isPending, isError, error} = useVerifyEmail(() => {
- 
-    router.push('/home');
+  const { verify, isPending, isError, error } = useVerifyEmail(() => {
+    router.push("/home");
   });
 
   const handleChange = (index: number, value: string) => {
@@ -37,14 +36,14 @@ const EmailVerificationPopup = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(data) 
+    console.log(data);
     if (data?.user) {
       await verify({ email: data.user.email, code: otp.join("") });
     }
   };
 
   return (
-    <div className={styles.verifyPopup}> 
+    <div className={styles.verifyPopup}>
       <div className={`${styles.container} ${roboto.variable}`}>
         <div className={styles.popupHeader}>
           <p className={styles.popupTitle}>Check your mailbox</p>
@@ -58,7 +57,7 @@ const EmailVerificationPopup = () => {
             {otp.map((digit, index) => (
               <input
                 key={index}
-                id={`otp-${index}`} 
+                id={`otp-${index}`}
                 type="text"
                 maxLength={1}
                 className={styles.otpInput}

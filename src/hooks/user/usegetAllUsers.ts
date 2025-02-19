@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { AxiosError } from "axios";// Adjust the import based on your actual type definition
+import { AxiosError } from "axios"; // Adjust the import based on your actual type definition
 import { getAllUsers } from "@/api/user/userApi"; // Adjust the import based on your actual API function
 import { allUsersResponse } from "@/types/auth/interfaces";
 
@@ -12,9 +12,12 @@ interface UseAllUsersResponse {
 }
 
 const useAllUsers = (): UseAllUsersResponse => {
-  const { data, isLoading, isError, error, refetch } = useQuery<allUsersResponse, AxiosError<{
-    message?: string;
-  }>>({
+  const { data, isLoading, isError, error, refetch } = useQuery<
+    allUsersResponse,
+    AxiosError<{
+      message?: string;
+    }>
+  >({
     queryKey: ["allUsers"],
     queryFn: getAllUsers,
     retry: false,

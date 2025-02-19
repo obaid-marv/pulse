@@ -1,7 +1,7 @@
-'use client'
+"use client";
 import { useState } from "react";
 import styles from "./CustomInput.module.scss";
-import { righteous, roboto } from '../../fonts';
+import { righteous, roboto } from "../../fonts";
 
 interface CustomInputProps {
   placeholder?: string;
@@ -27,8 +27,7 @@ export default function CustomInput({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
-    
-    // Email validation: Must end with @qlu.ai
+
     if (type === "email" && newValue && !newValue.endsWith("@qlu.ai")) {
       setEmailError("Email must be in the format example@qlu.ai");
     } else {

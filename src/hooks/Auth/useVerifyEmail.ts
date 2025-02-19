@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { verifyEmail } from "@/api/auth/authApi";
 import { basicResponse } from "@/types/auth/interfaces";
+import Cookies from "js-cookie";
 
 interface UseVerifyEmailResponse {
   verify: (data: { email: string; code: string }) => Promise<void>;
@@ -20,7 +21,8 @@ const useVerifyEmail = (onSuccess: () => void): UseVerifyEmailResponse => {
   >({
     mutationFn: verifyEmail,
     onSuccess: () => {
-      onSuccess();  
+      Cookies.set("isVerified", "true");
+      onSuccess();
     },
   });
 

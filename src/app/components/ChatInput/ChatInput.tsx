@@ -1,25 +1,38 @@
-"use client"
+"use client";
 
-import { useState } from 'react'
-import styles from './ChatInput.module.scss'
-import { Bold, Italic, Link, List, ListOrdered, Code, Plus, Type, Smile, Video, Mic, PenTool, Send } from 'lucide-react'
+import { useState } from "react";
+import styles from "./ChatInput.module.scss";
+import {
+  Bold,
+  Italic,
+  Link,
+  List,
+  ListOrdered,
+  Code,
+  Plus,
+  Type,
+  Smile,
+  Video,
+  Mic,
+  SendHorizonalIcon,
+} from "lucide-react";
 
 interface ChatInputProps {
-  onChange: (message: string) => void; 
+  onChange: (message: string) => void;
   handleSubmit: () => void; // Handle submit function passed from the parent
 }
 
 export default function ChatInput({ onChange, handleSubmit }: ChatInputProps) {
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState("");
 
   return (
     <div className={styles.wrapper}>
       <form
         onSubmit={(e) => {
-          e.preventDefault()
+          e.preventDefault();
           if (message.trim()) {
-            handleSubmit(); 
-            setMessage('')
+            handleSubmit();
+            setMessage("");
           }
         }}
         className={styles.container}
@@ -52,8 +65,8 @@ export default function ChatInput({ onChange, handleSubmit }: ChatInputProps) {
           placeholder="Message...."
           value={message}
           onChange={(e) => {
-            setMessage(e.target.value)
-            onChange(e.target.value)
+            setMessage(e.target.value);
+            onChange(e.target.value);
           }}
           rows={1}
         />
@@ -81,12 +94,12 @@ export default function ChatInput({ onChange, handleSubmit }: ChatInputProps) {
           </div>
           <button
             type="submit"
-            className={`${styles.sendButton} ${message.trim() ? styles.active : ''}`}
+            className={`${styles.sendButton} ${message.trim() ? styles.active : ""}`}
           >
-            <Send size={20} />
+            <SendHorizonalIcon size={20} color={"#06334D"} />
           </button>
         </div>
       </form>
     </div>
-  )
+  );
 }

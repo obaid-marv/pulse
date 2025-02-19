@@ -2,9 +2,15 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { ApiError, SignupResponse } from "@/types/auth/interfaces";
 import { register } from "@/api/auth/authApi";
+import Cookies from "js-cookie";
 
 interface UseSignupResponse {
-  signup: (data: { email: string; password: string; name: string; username: string }) => Promise<void>;
+  signup: (data: {
+    email: string;
+    password: string;
+    name: string;
+    username: string;
+  }) => Promise<void>;
   isPending: boolean;
   isError: boolean;
   error?: ApiError;
@@ -17,7 +23,7 @@ interface ErrorResponseData {
 }
 
 const useSignup = (): UseSignupResponse => {
-  const queryClient = useQueryClient(); 
+  const queryClient = useQueryClient();
 
   const signupMutation = useMutation<
     SignupResponse,
@@ -26,7 +32,8 @@ const useSignup = (): UseSignupResponse => {
   >({
     mutationFn: register,
     onSuccess: (data) => {
-      // Store the signup data in the query cache
+      Cookies.set("token", data.token);
+      Cookies.set("isVerified", "false");
       queryClient.setQueryData(["signupData"], data);
     },
   });
@@ -49,14 +56,11 @@ const useSignup = (): UseSignupResponse => {
   };
 };
 
-
 export const useSignupData = () => {
   return useQuery<SignupResponse | undefined>({
-    queryKey: ["signupData"], 
-    enabled: false, 
+    queryKey: ["signupData"],
+    enabled: false,
   });
 };
-
-
 
 export default useSignup;

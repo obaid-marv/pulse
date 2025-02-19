@@ -1,11 +1,11 @@
-import { myDetails, verifyToken } from '@/api/auth/authApi';
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { myDetails, verifyToken } from "@/api/auth/authApi";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest) {
-  const token = req.cookies.get('token')?.value;
+  const token = req.cookies.get("token")?.value;
 
-  if (req.nextUrl.pathname.startsWith('/home')) {
+  if (req.nextUrl.pathname.startsWith("/home")) {
     if (token) {
       try {
         const data = await verifyToken(token);
@@ -14,10 +14,10 @@ export async function middleware(req: NextRequest) {
           return NextResponse.next();
         }
       } catch (error) {
-        console.error('Token verification failed:', error);
+        console.error("Token verification failed:", error);
       }
     } else {
-      return NextResponse.redirect(new URL('/', req.url));
+      return NextResponse.redirect(new URL("/", req.url));
     }
   }
 
@@ -25,5 +25,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/home/:path*'],
+  matcher: ["/home/:path*"],
 };

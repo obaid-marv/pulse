@@ -16,9 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          <SocketProvider>
-          {children}
-          </SocketProvider>
+          <SocketProvider>{children}</SocketProvider>
         </Providers>
       </body>
     </html>

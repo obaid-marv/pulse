@@ -1,5 +1,4 @@
-@import '../../../styles/variables.scss';
-
+@import "../../../styles/variables.scss";
 
 .verifyPopup {
   position: fixed;
@@ -14,11 +13,10 @@
   z-index: 1000;
 }
 
-.container{
-
+.container {
   background-color: white;
   width: 350px;
-  padding: 20px ;
+  padding: 20px;
   border-radius: 10px;
   font-family: var(--font-roboto);
 }
@@ -40,7 +38,6 @@
   border-top: 1px solid #ddd;
   margin: 20px 0;
 }
-
 
 .infoText {
   font-size: 14px;
@@ -65,7 +62,7 @@
   font-size: 20px;
   background-color: white;
   color: black;
-  border: 2px solid #4A4A4A;
+  border: 2px solid #4a4a4a;
   border-radius: 50%;
   outline: none;
 }
@@ -84,11 +81,11 @@
   background-color: #045bb5;
 }
 
-.resendEmail, .backToLogin {
+.resendEmail,
+.backToLogin {
   text-align: center;
   margin-top: 10px;
 }
-
 
 .backToLogin {
   display: flex;
@@ -107,7 +104,6 @@
   font-weight: 500;
 }
 
-.errorMessage{
+.errorMessage {
   color: red;
 }
-

@@ -1,33 +1,39 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 
 .message {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  display: flex;
+  align-items: center;
+  max-width: 900px;
+  gap: 16px;
+}
+
+.messageAvatar {
+  img {
+    border-radius: 50%;
+    object-fit: cover;
   }
-  
-  .messageAvatar {
-    img {
-      border-radius: 50%;
-      object-fit: cover;
-    }
-  }
-  
-  .messageContent {
-    flex: 1;
-  }
-  
-  .messageSender {
-    display: block;
-    font-weight: 600;
-    color: $primary-color;
-    margin-bottom: 4px;
-    font-size: large;
-  }
-  
-  .messageText {
-    color: #374151;
-    margin: 0;
-    line-height: 1.5;
-  }
-  
+}
+
+.messageContent {
+  flex: 1;
+  min-width: 0; // Prevents flex child from overflowing the parent
+  word-wrap: break-word;
+}
+
+.messageSender {
+  display: block;
+  font-weight: 600;
+  color: $primary-color;
+  margin-bottom: 4px;
+  font-size: large;
+}
+
+.messageText {
+  color: #374151;
+  margin: 0;
+  line-height: 1.5;
+  word-wrap: break-word;
+  overflow-wrap: break-word; // Ensures long words break within the container
+  max-width: 100%; // Prevents text from exceeding the container width
+  white-space: pre-wrap; // Preserves spaces & line breaks while wrapping
+}

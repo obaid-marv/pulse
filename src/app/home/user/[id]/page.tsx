@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import styles from "./page.module.scss";
 import { Images } from "@/constants/images";
 import ChatSection from "@/app/components/ChatSection";
@@ -34,32 +32,8 @@ export default function ChatPage() {
           {chatUser?.name} <AiFillCaretRight />
         </span>
       </div>
-      <div className={styles.profileSection}>
-        <div className={styles.profileInfo}>
-          <div className={styles.imageWrapper}>
-            <Image
-              src={chatUser?.imgUrl || Images["default-avatar"]}
-              alt="Profile"
-              width={140}
-              height={140}
-              className={styles.profileImage}
-            />
-            <span className={styles.onlineStatus}></span>
-          </div>
-          <div className={styles.profileText}>
-            <h1 className={styles.name}>{chatUser?.name}</h1>
-            <p className={styles.description}>
-              This conversation is between <Link href="/profile">@{chatUser?.name}</Link> and you.
-              Checkout their profile to know more about them.
-            </p>
-          </div>
-          <Link href={"/"} className={styles.viewProfileButton}>
-            View Profile
-          </Link>
-        </div>
-      </div>
 
-      <ChatSection userData={chatUser} />
+      {chatUser?.id !== 0 && <ChatSection userData={chatUser} />}
     </div>
   );
 }

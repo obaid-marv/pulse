@@ -28,11 +28,11 @@ export default function CustomInput({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
 
-    if (type === "email" && newValue && !newValue.endsWith("@qlu.ai")) {
-      setEmailError("Email must be in the format example@qlu.ai");
-    } else {
-      setEmailError(null);
-    }
+    // if (type === "email" && newValue && !newValue.endsWith("@qlu.ai")) {
+    //   setEmailError("Email must be in the format example@qlu.ai");
+    // } else {
+    //   setEmailError(null);
+    // }
 
     onChange(newValue);
   };

@@ -7,7 +7,9 @@ const useLogout = () => {
   const logout = () => {
     Cookies.remove("token");
     Cookies.remove("isVerified");
-    router.push("/");
+
+    router.replace("/");
+    window.location.reload();
   };
 
   return { logout };

@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import Image from "next/image";
 import styles from "./ProfilePanel.module.scss";
 import { Images } from "@/constants/images";
@@ -8,9 +7,16 @@ import useMyDetails from "@/hooks/Auth/useGetMyDetails";
 interface ProfilePanelProps {
   isOpen: boolean;
   onClose: () => void;
+  openEditProfile: () => void;
+  openEditContact: () => void;
 }
 
-export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
+export default function ProfilePanel({
+  isOpen,
+  onClose,
+  openEditProfile,
+  openEditContact,
+}: ProfilePanelProps) {
   const { data: currentUserData } = useMyDetails();
 
   return (
@@ -36,7 +42,7 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
             <h3 className={styles.name}>{currentUserData?.user.name}</h3>
             <p className={styles.username}>@{currentUserData?.user.username}</p>
           </div>
-          <div className={styles.editButton}>
+          <div onClick={openEditProfile} className={styles.editButton}>
             <span>Edit</span>
           </div>
         </div>
@@ -47,7 +53,7 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
             <h3 className={styles.email}>Email</h3>
             <p className={styles.email}>@{currentUserData?.user.email}</p>
           </div>
-          <div className={styles.editButton}>
+          <div onClick={openEditContact} className={styles.editButton}>
             <span>Edit</span>
           </div>
         </div>

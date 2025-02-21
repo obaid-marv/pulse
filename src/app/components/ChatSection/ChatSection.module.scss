@@ -1,9 +1,128 @@
+@import "../../styles/variables.scss";
+
 .chatSection {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  height: 350px;
-  overflow-y: auto;
+  gap: 16px;
   width: 100%;
-  margin-top: 330px;
+  margin-bottom: 150px;
+}
+
+.profileSection {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  z-index: 10;
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.imageWrapper {
+  position: relative;
+}
+
+.profileImage {
+  object-fit: cover;
+  border: 2px solid $secondary-color;
+  border-radius: 10px;
+}
+
+.profileText {
+  .name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: $primary-color;
+    margin: 0 0 8px 0;
+  }
+
+  .description {
+    color: #6b7280;
+    font-size: 1rem;
+    margin: 0;
+
+    a {
+      color: $primary-color;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.viewProfileButton {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  color: #374151;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 700;
+
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #f9fafb;
+  }
+}
+
+.message {
+  display: flex;
+  gap: 12px;
+}
+
+.messageAvatar {
+  img {
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
+
+.messageContent {
+  flex: 1;
+}
+
+.messageSender {
+  display: block;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.messageText {
+  color: #374151;
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .profileSection {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .viewProfileButton {
+    align-self: flex-start;
+  }
+
+  .profileInfo {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profileText {
+    text-align: center;
+  }
 }

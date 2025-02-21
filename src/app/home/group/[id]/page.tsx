@@ -19,10 +19,6 @@ export default function GroupChatPage() {
   const [creator, setCreator] = useState<User>();
   const { data: allGroupsData, isPending, refetch } = useAllGroups();
   const { data: allUsersData } = useAllUsers();
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", { month: "long", day: "numeric" });
-  };
 
   useEffect(() => {
     if (!allGroupsData?.success && !isPending) {
@@ -37,18 +33,13 @@ export default function GroupChatPage() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <span className={styles.text}># {group?.name}</span>
-      </div>
-      <div className={styles.headingContainer}>
         <h1 className={styles.heading}>
           <span className={styles.hashtag}>#</span> {group?.name}
         </h1>
-        <p className={styles.description}>
-          <span className={styles.mention}>@{creator?.name}</span> created this group on{" "}
-          {formatDate(group?.createdAt || "")}. This is the very beginning of the {group?.name}
-        </p>
       </div>
-      <GroupChatSection groupData={group} />
+
+      {isPending && <span>Loading ...</span>}
+      {creator && <GroupChatSection groupData={group} creator={creator?.name || ""} />}
     </div>
   );
 }

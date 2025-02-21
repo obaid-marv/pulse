@@ -13,6 +13,7 @@ export default function Home() {
   const token = getToken();
   const router = useRouter();
   const isVerified = Cookies.get("isVerified");
+
   useEffect(() => {
     if (!data && !isPending && token) {
       refetch();

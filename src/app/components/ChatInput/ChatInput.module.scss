@@ -3,12 +3,12 @@
 .wrapper {
   position: fixed;
   bottom: 0;
-  left: 400px;
+  left: 402px;
   right: 0;
   max-width: 1320px;
   padding: 16px;
   z-index: 100;
-
+  background-color: white;
   @media (min-width: 768px) {
     padding: 16px 24px;
   }
@@ -50,29 +50,6 @@
 
   &::-webkit-scrollbar {
     display: none;
-  }
-}
-
-.toolbarButton {
-  background: transparent;
-  border: none;
-  padding: 6px;
-  border-radius: 6px;
-  color: #64748b;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
-
-  &:hover {
-    background-color: #e2e8f0;
-    color: #475569;
-  }
-
-  &:active {
-    background-color: #cbd5e1;
   }
 }
 

@@ -8,7 +8,8 @@ import useMyDetails from "@/hooks/Auth/useGetMyDetails";
 import { useState, useEffect } from "react";
 import { useSocket } from "@/context/socketContext";
 import usePreviousMessages from "@/hooks/messages/usePreviousMessages";
-import { myDetails } from "@/api/auth/authApi";
+import { useParams } from "next/navigation";
+import Image from "next/image";
 
 interface ChatSectionProps {
   userData?: User;
@@ -16,11 +17,18 @@ interface ChatSectionProps {
 
 export default function ChatSection({ userData }: ChatSectionProps) {
   const { data: currentUserData } = useMyDetails();
-  const senderId = currentUserData?.user.id || 0;
+  const senderId = currentUserData?.user.id;
+  const params = useParams();
+  const recieverId = Array.isArray(params.id)
+    ? parseInt(params.id[0])
+    : params.id
+      ? parseInt(params.id)
+      : null;
 
-  const receiverId = userData?.id || 0;
-
-  const { data: prevMessagesData, isPending, refetch } = usePreviousMessages(senderId, receiverId);
+  const {
+    data: prevMessagesData,
+    isPending,
+  } = usePreviousMessages(senderId || 0, recieverId || 0);
   const socket = useSocket();
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<MessageData[]>([]);
@@ -30,12 +38,12 @@ export default function ChatSection({ userData }: ChatSectionProps) {
   };
 
   const handleSendMessage = () => {
-    if (!socket || !message.trim() || !senderId || !receiverId) return;
+    if (!socket || !message.trim() || !senderId || !recieverId) return;
 
     const newMessage: MessageData = {
       id: Date.now(),
       senderId,
-      receiverId,
+      receiverId: recieverId,
       content: message,
       messageType: "text",
     };
@@ -45,11 +53,31 @@ export default function ChatSection({ userData }: ChatSectionProps) {
     setMessage("");
   };
 
+  // Handler for file uploads
+  const handleFileUpload = ({ dataUrl, fileName }: { dataUrl: string; fileName: string }) => {
+    if (!socket || !senderId || !recieverId) return;
+
+    const fileMessage: MessageData = {
+      id: Date.now(),
+      senderId,
+      receiverId: recieverId,
+      content: dataUrl,
+      messageType: "image",
+    };
+
+    console.log(fileMessage);
+    socket.emit("sendFile", fileMessage);
+    setMessages((prev) => [...prev, fileMessage]);
+  };
+
   useEffect(() => {
     if (!socket) return;
 
     const receiveMessageHandler = (newMessage: MessageData) => {
-      setMessages((prev) => [...prev, newMessage]);
+      console.log(newMessage);
+      if (newMessage.senderId == recieverId) {
+        setMessages((prev) => [...prev, newMessage]);
+      }
     };
 
     socket.on("receiveMessage", receiveMessageHandler);
@@ -60,18 +88,37 @@ export default function ChatSection({ userData }: ChatSectionProps) {
   }, [socket]);
 
   useEffect(() => {
-    if (!prevMessagesData && !isPending) {
-      refetch();
-    }
-    if (prevMessagesData?.success && !isPending) {
+    if (prevMessagesData && prevMessagesData.messages) {
       setMessages(prevMessagesData.messages);
     }
-  }, [prevMessagesData, refetch, isPending]);
+  }, [prevMessagesData]);
 
   if (!socket) return <div>Loading...</div>;
 
   return (
     <div className={styles.chatSection}>
+      <div className={styles.profileSection}>
+        <div className={styles.profileInfo}>
+          <div className={styles.imageWrapper}>
+            <Image
+              src={userData?.imgUrl || Images["default-avatar"]}
+              alt="Profile"
+              width={140}
+              height={140}
+              className={styles.profileImage}
+            />
+          </div>
+          <div className={styles.profileText}>
+            <h1 className={styles.name}>{userData?.name}</h1>
+            <p className={styles.description}>
+              This conversation is between @{userData?.name} and you. Checkout their profile to know
+              more about them.
+            </p>
+          </div>
+          <div className={styles.viewProfileButton}>View Profile</div>
+        </div>
+      </div>
+      {isPending && <h2>Loading...</h2>}
       {messages.map((msg) => (
         <Message
           key={msg.id}
@@ -82,10 +129,15 @@ export default function ChatSection({ userData }: ChatSectionProps) {
               ? currentUserData?.user.imgUrl || Images["default-avatar"]
               : userData?.imgUrl || Images["default-avatar"]
           }
+          type={msg.messageType}
         />
       ))}
 
-      <ChatInput onChange={handleMessageChange} handleSubmit={handleSendMessage} />
+      <ChatInput
+        onChange={handleMessageChange}
+        handleSubmit={handleSendMessage}
+        handleFileUpload={handleFileUpload}
+      />
     </div>
   );
 }

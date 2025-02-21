@@ -1,100 +1,127 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { useEditor, EditorContent } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
 import styles from "./ChatInput.module.scss";
-import {
-  Bold,
-  Italic,
-  Link,
-  List,
-  ListOrdered,
-  Code,
-  Plus,
-  Type,
-  Smile,
-  Video,
-  Mic,
-  SendHorizonalIcon,
-} from "lucide-react";
+import { Plus, SendHorizonalIcon } from "lucide-react";
+import ToolbarButton from "./ToolbarButton";
+import { bottomToolbarItems, ToolbarItem, topToolbarItems } from "./ToolbarItems";
 
 interface ChatInputProps {
   onChange: (message: string) => void;
-  handleSubmit: () => void; // Handle submit function passed from the parent
+  handleSubmit: () => void;
+  handleFileUpload: (fileData: { dataUrl: string; fileName: string }) => void;
 }
 
-export default function ChatInput({ onChange, handleSubmit }: ChatInputProps) {
-  const [message, setMessage] = useState("");
+export default function ChatInput({ onChange, handleSubmit, handleFileUpload }: ChatInputProps) {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const editor = useEditor({
+    extensions: [StarterKit],
+    content: "",
+    onUpdate: ({ editor }) => {
+      onChange(editor.getHTML());
+    },
+  });
+
+  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const dataUrl = reader.result as string;
+        handleFileUpload({ dataUrl, fileName: file.name });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleTextEditing = (item: ToolbarItem) => {
+    if (!editor) return;
+    switch (item.key) {
+      case "bold":
+        editor.chain().focus().toggleBold().run();
+        break;
+      case "italic":
+        editor.chain().focus().toggleItalic().run();
+        break;
+      case "list":
+        editor.chain().focus().toggleBulletList().run();
+        break;
+      case "listOrdered":
+        editor.chain().focus().toggleOrderedList().run();
+        break;
+      case "code":
+        editor.chain().focus().toggleCodeBlock().run();
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
     <div className={styles.wrapper}>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          if (message.trim()) {
+          if (editor && editor.getText().trim()) {
             handleSubmit();
-            setMessage("");
+            editor.commands.clearContent();
           }
         }}
         className={styles.container}
       >
         <div className={styles.topToolbar}>
-          <button type="button" className={styles.toolbarButton}>
-            <Bold size={18} />
-          </button>
-          <button type="button" className={styles.toolbarButton}>
-            <Italic size={18} />
-          </button>
-          <button type="button" className={styles.toolbarButton}>
-            <Link size={18} />
-          </button>
-          <div className={styles.divider}></div>
-          <button type="button" className={styles.toolbarButton}>
-            <List size={18} />
-          </button>
-          <button type="button" className={styles.toolbarButton}>
-            <ListOrdered size={18} />
-          </button>
-          <div className={styles.divider}></div>
-          <button type="button" className={styles.toolbarButton}>
-            <Code size={18} />
-          </button>
+          {topToolbarItems.map((item) =>
+            item.divider ? (
+              <div key={item.key} className={styles.divider}></div>
+            ) : (
+              <ToolbarButton
+                key={item.key}
+                icon={<item.Icon size={item.size} />}
+                onClick={() => handleTextEditing(item)}
+              />
+            )
+          )}
         </div>
 
-        <textarea
-          className={styles.input}
-          placeholder="Message...."
-          value={message}
-          onChange={(e) => {
-            setMessage(e.target.value);
-            onChange(e.target.value);
-          }}
-          rows={1}
-        />
+        <EditorContent editor={editor} className={styles.editorContent} />
 
         <div className={styles.bottomToolbar}>
           <div className={styles.leftTools}>
-            <button type="button" className={styles.toolbarButton}>
-              <Plus size={20} />
-            </button>
-            <button type="button" className={styles.toolbarButton}>
-              <Italic size={20} />
-            </button>
-            <button type="button" className={styles.toolbarButton}>
-              <Type size={20} />
-            </button>
-            <button type="button" className={styles.toolbarButton}>
-              <Smile size={20} />
-            </button>
-            <button type="button" className={styles.toolbarButton}>
-              <Video size={20} />
-            </button>
-            <button type="button" className={styles.toolbarButton}>
-              <Mic size={20} />
-            </button>
+            <ToolbarButton
+              key="plus"
+              icon={<Plus size={20} />}
+              onClick={() => fileInputRef.current?.click()}
+            />
+            {bottomToolbarItems.map((item) => {
+              if ("divider" in item && item.divider) {
+                return <div key={item.key} className={styles.divider} />;
+              } else {
+                const Icon = item.Icon;
+                return (
+                  <ToolbarButton
+                    key={item.key}
+                    icon={<Icon size={item.size} />}
+                    onClick={item.onClick}
+                  />
+                );
+              }
+            })}
+            <input
+              type="file"
+              ref={fileInputRef}
+              style={{ display: "none" }}
+              onChange={onFileChange}
+              accept="image/*"
+            />
           </div>
           <button
             type="submit"
-            className={`${styles.sendButton} ${message.trim() ? styles.active : ""}`}
+            className={`${styles.sendButton} ${
+              editor && editor.getText().trim() ? styles.active : ""
+            }`}
           >
             <SendHorizonalIcon size={20} color={"#06334D"} />
           </button>

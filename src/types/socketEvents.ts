@@ -4,7 +4,7 @@ export interface MessageData {
   receiverId?: number | null;
   groupId?: number | null;
   content: string;
-  messageType: "text" | "image" | "video";
+  messageType: "text" | "image";
   createdAt?: string;
 }
 

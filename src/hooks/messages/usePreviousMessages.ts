@@ -19,7 +19,7 @@ const usePreviousMessages = (senderId: number, receiverId: number): UsePreviousM
     queryKey: ["previousMessages", senderId, receiverId],
     queryFn: () => getPreviousMessages({ senderId, receiverId }),
     enabled: !!senderId && !!receiverId,
-    retry: false,
+    retry: 3,
   });
 
   return {

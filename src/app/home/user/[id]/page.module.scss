@@ -32,11 +32,7 @@
   padding: 20px;
   margin-top: 10px;
   margin-bottom: 20px;
-  position: fixed;
-  top: 110px;
-  left: 402px;
   width: calc(100vw - 402px);
-  z-index: 10;
   background-color: white;
 }
 
@@ -55,17 +51,6 @@
   object-fit: cover;
   border: 2px solid $secondary-color;
   border-radius: 10px;
-}
-
-.onlineStatus {
-  position: absolute;
-  bottom: 4px;
-  right: 2px;
-  width: 12px;
-  height: 12px;
-  background-color: #22c55e;
-  border-radius: 50%;
-  border: 2px solid white;
 }
 
 .profileText {

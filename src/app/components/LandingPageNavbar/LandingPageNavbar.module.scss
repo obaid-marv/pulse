@@ -64,3 +64,9 @@
   justify-content: flex-end;
   gap: 100px;
 }
+
+@media (max-width: 1024px) {
+  .navLinks {
+    display: none;
+  }
+}

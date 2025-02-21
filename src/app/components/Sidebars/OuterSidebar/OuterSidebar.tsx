@@ -6,8 +6,10 @@ import NavigationButton from "./components";
 import ProfilePanel from "@/app/components/ProfilePanel";
 import { IoLogOutOutline } from "react-icons/io5";
 import useLogout from "@/hooks/Auth/useLogout";
+import EditContactPopup from "../../EditPopups/EditContactPopup";
 
 export default function OuterSidebar() {
+  const [openEditContact, setOpenEditContact] = useState(false);
   const { logout } = useLogout();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
@@ -37,7 +39,13 @@ export default function OuterSidebar() {
         </div>
       </aside>
 
-      <ProfilePanel isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} />
+      <ProfilePanel
+        isOpen={isProfileOpen}
+        onClose={() => setIsProfileOpen(false)}
+        openEditContact={() => setOpenEditContact(true)}
+        openEditProfile={() => {}}
+      />
+      {openEditContact && <EditContactPopup onClose={() => setOpenEditContact(false)} />}
     </>
   );
 }
